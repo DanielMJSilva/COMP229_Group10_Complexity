@@ -17,4 +17,48 @@ router.get('/', (req, res, next) => {
     });
 });
 
+router.get('/create',(req, res, next) => {
+
+    let emptySurvey = Survey({
+        title: '',
+        description: '',
+        created: null,
+        updated: null,
+        expiry: null,
+        active: null,
+        startDate: null
+
+      });
+
+    res.render('survey/createSurvey', {title: 'Create Survey', Survey: emptySurvey});   
+}
+);
+
+router.post('/create', (req, res, next) => {
+
+    let newServey = Survey({
+        title: req.body.title,
+        description: req.body.description,
+        created: new Date(),
+        updated: null,
+        expiry: req.body.expiry,
+        active: req.body.active,
+        startDate: req.body.startDate
+    });
+
+    Survey.create(newServey, (err, Survey) => {
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            
+            res.redirect('/survey/survey');
+        }
+    });
+
+});
+
 module.exports = router;

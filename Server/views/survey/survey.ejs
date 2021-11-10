@@ -10,7 +10,7 @@
                 <h1><%= title %></h1>
                 
            <!--      < % if(typeof displayName == 'string' && displayName) { %>-->
-                <a href="" class="btn btn-primary" role="button">
+                <a href="survey/create" class="btn btn-primary" role="button">
                 <i class="fas fa-plus-circle"></i> Create Survey</a>
                 <!-- < % } %> -->
                 <br>
@@ -34,11 +34,11 @@
                             <td class="text-center col-2"><%= SurveyList[count].expiry%></td>
                             <!--< % if(typeof displayName == 'string' && displayName) { %>-->
                                 <td class="text-center col-1">
-                                    <a href=""  class="btn btn-primary">
-                                    <i class="fas fa-pencil-alt"></i> Edit</a>  
+                                    <a href="survey/update"  class="btn btn-primary">
+                                    <i class="fas fa-pencil-alt"></i> Update</a>  
                                 </td>
                                 <td class="text-center col-1">
-                                    <a href=""  class="btn btn-danger">
+                                    <a href="survey/delete"  class="btn btn-danger">
                                     <i class="fas fa-trash-alt"></i> Delete</a>
                                 </td>
                         <!--    < % } %> -->

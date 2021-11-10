@@ -30,7 +30,7 @@
     "typescript": "^4.4.4"
   },
   "description": "survey-group-project-comp229",
-  "main": "index.js",
+  "main": "server.js",
   "devDependencies": {
     "@types/connect-flash": "0.0.37",
     "@types/express": "^4.17.13",

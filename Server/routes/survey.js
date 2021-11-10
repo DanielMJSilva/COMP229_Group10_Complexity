@@ -39,11 +39,14 @@ router.post('/create', (req, res, next) => {
     let newServey = Survey({
         title: req.body.title,
         description: req.body.description,
+        owner: "Group 10",
+        questions: null,
         created: new Date(),
         updated: null,
         expiry: req.body.expiry,
-        active: req.body.active,
-        startDate: req.body.startDate
+        active: null, //req.body.active
+        startDate: req.body.startDate,
+        
     });
 
     Survey.create(newServey, (err, Survey) => {
@@ -54,8 +57,23 @@ router.post('/create', (req, res, next) => {
         }
         else
         {
-            
-            res.redirect('/survey/survey');
+            res.redirect('/survey-list');
+        }
+    });
+
+});
+
+router.get('/delete/:id', (req, res, next) => {
+    let id = req.params.id;
+    Survey.remove({_id: id}, (err) => {
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+        res.redirect('/survey-list');
         }
     });
 

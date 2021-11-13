@@ -1,6 +1,6 @@
-<%- include ../partials/header.ejs %>
+<% include ../partials/header.ejs %>
 
-<%- include ../partials/main_nav.ejs %>
+<% include ../partials/main_nav.ejs %>
 
 <!-- Content for the Create Survey page -->
 <div class="container">
@@ -14,7 +14,7 @@
                     id="title"
                     placeholder="Enter Title"
                     name="title"
-                    value="<%=Survey.title %>"
+                    value="<%= Survey.title %>"
                     required>
                 </div>
 
@@ -25,7 +25,7 @@
                     rows="4"
                     placeholder="Enter description"
                     name="description" 
-                    value="<%=Survey.description %>"
+                    value="<%= Survey.description %>"
                     required></textarea>
                 </div>
 
@@ -48,7 +48,7 @@
             </div>
 
                 <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-edit"></i> Create</button>
+                    <i class="fas fa-edit"></i> Submit</button>
 
                     <a href="/survey-list" class="btn btn-warning">
                         <i class="fas fa-undo"></i> Cancel</a>
@@ -59,6 +59,6 @@
 
 
 
-<%- include ../partials/bottom_nav.ejs %>
+<% include ../partials/bottom_nav.ejs %>
 
-<%- include ../partials/footer.ejs %>
+<% include ../partials/footer.ejs %>

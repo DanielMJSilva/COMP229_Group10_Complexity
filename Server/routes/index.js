@@ -13,8 +13,8 @@ router.get('/about', function(req, res, next) {
   res.render('about', { title: 'About' });
 });
 
-//router.get('/survey-list', function(req, res, next) {
-//res.render('survey/survey', { title: 'Survey List' });
-//});
+router.get('/survey', function(req, res, next) {
+res.render('survey/survey', { title: 'Survey List' });
+});
 
 module.exports = router;

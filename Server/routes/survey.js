@@ -1,10 +1,21 @@
 let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
-
+let passport = require('passport');
 
 //create the user Model instance
 let Survey = require('../models/survey');
+
+//helper function for guard purpose
+function requireAuth(req, res, next)
+{
+    // check if the user is logged in
+    if(!req.isAuthenticated())
+    {
+        return res.redirect('/login');
+    }
+    next();
+}
 
 router.get('/', (req, res, next) => {
     Survey.find((err, surveyList)=> {
@@ -13,12 +24,13 @@ router.get('/', (req, res, next) => {
         }
         else{
             //console.log(surveyList);
-            res.render('survey/survey', {title: 'Survey List', SurveyList: surveyList})
+            res.render('survey/survey', {title: 'Survey List', SurveyList: surveyList, 
+            displayName: req.user ? req.user.displayName : '' })
         }
     });
 });
 
-router.get('/create',(req, res, next) => {
+router.get('/create', requireAuth, (req, res, next) => {
     let emptySurvey = Survey({
         title: '',
         description: '',
@@ -30,11 +42,12 @@ router.get('/create',(req, res, next) => {
 
       });
 
-    res.render('survey/create_update', {title: 'Create Survey', Survey: emptySurvey});   
+    res.render('survey/create_update', {title: 'Create Survey', Survey: emptySurvey, 
+    displayName: req.user ? req.user.displayName : '' });   
 }
 );
 
-router.post('/create', (req, res, next) => {
+router.post('/create', requireAuth, (req, res, next) => {
 
     let newServey = Survey({
         title: req.body.title,
@@ -64,7 +77,7 @@ router.post('/create', (req, res, next) => {
 });
 
 
-router.get('/update/:id', (req, res, next) => {
+router.get('/update/:id', requireAuth, (req, res, next) => {
 
     let id = req.params.id;
 
@@ -78,13 +91,14 @@ router.get('/update/:id', (req, res, next) => {
         {
             console.log("salfkdjslf"+Survey.title);
             console.log("test1235");
-            res.render('survey/create_update', {title: 'Update Survey', Survey: survey});   
+            res.render('survey/create_update', {title: 'Update Survey', Survey: survey, 
+            displayName: req.user ? req.user.displayName : '' });   
         }
     });  
 
 });
 
-router.put('/update:id', (req, res, next) => {
+router.put('/update:id', requireAuth, (req, res, next) => {
     console.log("test1234");
     let id = req.params.id;
 
@@ -118,7 +132,7 @@ router.put('/update:id', (req, res, next) => {
 
 
 
-router.get('/delete/:id', (req, res, next) => {
+router.get('/delete/:id', requireAuth, (req, res, next) => {
     let id = req.params.id;
     Survey.remove({_id: id}, (err) => {
         if(err)

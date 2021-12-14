@@ -8,6 +8,7 @@ import { FooterComponent } from './partials/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { SurveyComponent } from './pages/survey/survey.component';
+import { BasePageComponent } from './partials/base-page/base-page.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SurveyComponent } from './pages/survey/survey.component';
     FooterComponent,
     HomeComponent,
     AboutComponent,
-    SurveyComponent
+    SurveyComponent,
+    BasePageComponent
   ],
   imports: [
     BrowserModule,
